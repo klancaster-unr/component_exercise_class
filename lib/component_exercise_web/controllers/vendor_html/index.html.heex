@@ -1,0 +1,26 @@
+<.header>
+  Listing Vendors
+  <:actions>
+    <.link href={~p"/vendors/new"}>
+      <.button>New Vendor</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table id="vendors" rows={@vendors} row_click={&JS.navigate(~p"/vendors/#{&1}")}>
+  <:col :let={vendor} label="Name"><%= vendor.name %></:col>
+  <:col :let={vendor} label="Location"><%= vendor.location %></:col>
+  <:col :let={vendor} label="Category"><%= vendor.category %></:col>
+  <:action :let={vendor}>
+    <div class="sr-only">
+      <.link navigate={~p"/vendors/#{vendor}"}>Show</.link>
+    </div>
+    <.link navigate={~p"/vendors/#{vendor}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={vendor}>
+    <.link href={~p"/vendors/#{vendor}"} method="delete" data-confirm="Are you sure?">
+      Delete
+    </.link>
+  </:action>
+</.table>
+
